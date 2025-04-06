@@ -30,3 +30,8 @@ ul {
   text-align: center;
   gap: 10px;
 }
+li:hover {
+  color: #f44336;
+  text-decoration: line-through;
+  cursor: pointer;
+}

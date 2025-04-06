@@ -1,7 +1,6 @@
 const taskInput = document.querySelector('#taskInput')
 const addButton = document.querySelector('#addButton')
-const removeLastButton = document.querySelector('#removeLastButton')
-const removeFirstButton = document.querySelector('#removeFirstButton')
+const currentList = document.querySelector('#currentList')
 const result = document.querySelector('#result')
 const error = document.querySelector('#error')
 
@@ -12,32 +11,38 @@ const displayTasks = () => {
 
   if (taskList.length === 0) {
     result.textContent = 'Список задач: пусто'
+    localStorage.setItem('tasks', JSON.stringify([]))
+    localStorage.removeItem('tasks')
     return
   }
 
   const title = document.createElement('span')
-  title.textContent = 'Список задач: '
+  title.textContent = 'Список задач: (кликни по задаче чтобы удалить) '
   result.appendChild(title)
 
   const ol = document.createElement('ol')
-  taskList.forEach((task) => {
+  taskList.forEach((task, index) => {
     const li = document.createElement('li')
     const displayTask = task.charAt(0).toUpperCase() + task.slice(1)
     li.textContent = displayTask
+    li.addEventListener('click', () => {
+      taskList.splice(index, 1)
+      displayTasks()
+    })
     ol.appendChild(li)
   })
   result.appendChild(ol)
 
   localStorage.setItem('tasks', JSON.stringify(taskList))
+  console.log('Сохранённый taskList:', taskList)
 }
 
 const showError = (message) => {
   error.textContent = message
-  error.style.display = 'block'
-
+  error.classList.add('show')
   setTimeout(() => {
+    error.classList.remove('show')
     error.textContent = ''
-    error.style.display = 'none'
   }, 3000)
 }
 
@@ -63,18 +68,9 @@ addButton.addEventListener('click', () => {
   taskInput.value = ''
 })
 
-removeLastButton.addEventListener('click', () => {
-  taskList.pop()
-  displayTasks()
-})
-
-removeFirstButton.addEventListener('click', () => {
-  taskList.shift()
-  displayTasks()
-})
-
-taskInput.addEventListener('keypress', (e) => {
+taskInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
+    e.preventDefault()
     addButton.click()
   }
 })
