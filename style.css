@@ -1,0 +1,32 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
+  font-family: 'Underdog', system-ui;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #edeeda;
+}
+input {
+  font-size: 30px;
+  border-radius: 10px;
+}
+button {
+  font-family: 'Underdog', system-ui;
+  border-radius: 10px;
+
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+ul {
+  list-style: inside;
+}
+.todo {
+  max-width: 500px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+}
