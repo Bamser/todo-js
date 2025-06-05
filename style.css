@@ -14,15 +14,16 @@ input {
 button {
   font-family: 'Underdog', system-ui;
   border-radius: 10px;
-
   padding: 10px 20px;
   font-size: 20px;
 }
-
-ul {
-  list-style: inside;
+ol {
+  list-style: decimal;
+  padding-left: 40px;
+  margin: 10px 0;
 }
 .todo {
+  padding: 0 15px;
   max-width: 500px;
   margin: 100px auto;
   display: flex;
@@ -30,8 +31,38 @@ ul {
   text-align: center;
   gap: 10px;
 }
-li:hover {
-  color: #f44336;
+.complete {
   text-decoration: line-through;
+}
+.complete,
+.delete {
+  padding: 5px;
+  border: none;
+  background: transparent;
   cursor: pointer;
+}
+.complete:hover,
+.delete:hover {
+  opacity: 0.8;
+}
+li {
+  display: list-item;
+  padding: 5px 0;
+}
+.task-content {
+  display: inline-block;
+  text-align: left;
+  margin-right: 10px;
+  min-width: 0; /* Предотвращаем обрезку текста */
+}
+.buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  float: right; /* Иконки справа */
+}
+.complete img,
+.delete img {
+  width: 20px;
+  height: 20px;
 }
